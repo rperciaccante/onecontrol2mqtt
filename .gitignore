@@ -1,0 +1,3 @@
+*.backup
+*_cred.json
+dev/*
