@@ -1,0 +1,16 @@
+{
+    "name": "onecontrol2mqtt",
+    "description": "onecontrol2mqtt",
+    "version": "0.0.1",
+    "dependencies": {
+        "node-red-contrib-moment": "4.0.0",
+        "node-red-contrib-sse-client": "0.2.2",
+        "node-red-node-rbe": "0.2.9"
+    },
+    "node-red": {
+        "settings": {
+            "flowFile": "flow.json",
+            "credentialsFile": "flow_cred.json"
+        }
+    }
+}

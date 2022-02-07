@@ -1,0 +1,718 @@
+[
+    {
+        "id": "263d038f359cdfa0",
+        "type": "tab",
+        "label": "onecontrol2mqtt v1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c01bc4d9ed2a49a0",
+        "type": "group",
+        "z": "263d038f359cdfa0",
+        "name": "Set up connection and begin event stream",
+        "style": {
+            "fill": "#e3f3d3",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "fc1ffc53289b8353",
+            "428872f3f1cc5158",
+            "76a4bf4aa2607b91",
+            "9000968e89a13255",
+            "343c3e26fea7425a",
+            "6d8714556ee1a9df",
+            "1bbdc0c5f95a3eec",
+            "067b13bd484b2d58",
+            "dda47aa34ee87d5e",
+            "2e2a23e2758e4c2b"
+        ],
+        "x": 14,
+        "y": 39,
+        "w": 392,
+        "h": 342
+    },
+    {
+        "id": "b82129166ca6f3b4",
+        "type": "group",
+        "z": "263d038f359cdfa0",
+        "name": "Create standardized format",
+        "style": {
+            "fill": "#e3f3d3",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "ab8e671dbf9a4bfe",
+            "e130c649120de679",
+            "6b99b43fd73c29c3",
+            "8230233f2cbe6817"
+        ],
+        "x": 454,
+        "y": 39,
+        "w": 362,
+        "h": 342
+    },
+    {
+        "id": "88fde289bc410898",
+        "type": "group",
+        "z": "263d038f359cdfa0",
+        "name": "Gather Missing Info from Controller",
+        "style": {
+            "fill": "#e3f3d3",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "3e59efa3c3977c10",
+            "a2fb463016958aaf",
+            "f93922be9f0d7ba5",
+            "bbb30d861d5f9944"
+        ],
+        "x": 874,
+        "y": 39,
+        "w": 332,
+        "h": 342
+    },
+    {
+        "id": "c59cbc11e18cd55f",
+        "type": "group",
+        "z": "263d038f359cdfa0",
+        "name": "Write payloads to MQTT",
+        "style": {
+            "fill": "#e3f3d3",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "87266cac52150d3d",
+            "cbed5bf1de2ccc28",
+            "c8463644d11003a4",
+            "ae916530fc460486",
+            "05431e5a196f652c",
+            "85460d7bb245e517"
+        ],
+        "x": 1254,
+        "y": 39,
+        "w": 552,
+        "h": 342
+    },
+    {
+        "id": "d8c792082730b02c",
+        "type": "group",
+        "z": "263d038f359cdfa0",
+        "name": "Capture Errors",
+        "style": {
+            "fill": "#ffC000",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "cccdd403465a9c53",
+            "b0fe1813967a3520",
+            "fa53fb4f6b312efa"
+        ],
+        "x": 454,
+        "y": 419,
+        "w": 372,
+        "h": 122
+    },
+    {
+        "id": "f9896bb2219970c5",
+        "type": "mqtt-broker",
+        "name": "Localhost",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "fc1ffc53289b8353",
+        "type": "inject",
+        "z": "263d038f359cdfa0",
+        "g": "c01bc4d9ed2a49a0",
+        "name": "",
+        "props": [
+            {
+                "p": "timestamp",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "6d8714556ee1a9df",
+                "76a4bf4aa2607b91"
+            ]
+        ]
+    },
+    {
+        "id": "428872f3f1cc5158",
+        "type": "sse-client",
+        "z": "263d038f359cdfa0",
+        "g": "c01bc4d9ed2a49a0",
+        "name": "Connect to Event Stream",
+        "url": "",
+        "events": [],
+        "headers": {},
+        "proxy": "",
+        "restart": true,
+        "rejectUnauthorized": true,
+        "withCredentials": true,
+        "timeout": "15",
+        "x": 250,
+        "y": 260,
+        "wires": [
+            [
+                "343c3e26fea7425a"
+            ]
+        ]
+    },
+    {
+        "id": "76a4bf4aa2607b91",
+        "type": "delay",
+        "z": "263d038f359cdfa0",
+        "g": "c01bc4d9ed2a49a0",
+        "name": "Delay .5s",
+        "pauseType": "delay",
+        "timeout": "0.5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 135,
+        "y": 140,
+        "wires": [
+            [
+                "1bbdc0c5f95a3eec"
+            ]
+        ],
+        "icon": "font-awesome/fa-pause-circle",
+        "l": false
+    },
+    {
+        "id": "9000968e89a13255",
+        "type": "function",
+        "z": "263d038f359cdfa0",
+        "g": "c01bc4d9ed2a49a0",
+        "name": "Generate URL",
+        "func": "//  ############################################################################\n//       Get global config settings\nconfig = global.get(\"onecontrol2mqtt.config\")\n\n//  ############################################################################\n//       Save results to global config\ncore = {\n    \"versionSW\":            msg.payload.version,\n    \"versionHW\":            msg.payload.bridge\n}\nglobal.set(\"onecontrol2mqtt.platform\",core)\n\n//  ############################################################################\n//       Build URL to connect to OneControl event stream\nmsg.url = config.sourceHTTPServer + config.sourceHTTPRestTarget\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 220,
+        "wires": [
+            [
+                "428872f3f1cc5158"
+            ]
+        ]
+    },
+    {
+        "id": "343c3e26fea7425a",
+        "type": "function",
+        "z": "263d038f359cdfa0",
+        "g": "c01bc4d9ed2a49a0",
+        "name": "Unpack Raw Event *",
+        "func": "//  ############################################################################\n//       Incoming messages are double strings - payload inside a payload.\n//\nif (msg.event == \"error\") {\n        node.error(\"Unable to connect to OneControl unit at \" + msg.url)\n    } else {\n    msg.payload = JSON.parse(msg.payload)\n    payloadRaw = JSON.parse(msg.payload.payload)\n    msg.payload.payload = JSON.parse(msg.payload.payload)\n    msg = msg.payload\n    return msg;\n    }\n//  ############################################################################",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 300,
+        "wires": [
+            [
+                "dda47aa34ee87d5e"
+            ]
+        ]
+    },
+    {
+        "id": "cccdd403465a9c53",
+        "type": "catch",
+        "z": "263d038f359cdfa0",
+        "g": "d8c792082730b02c",
+        "name": "Catch Errors",
+        "scope": null,
+        "uncaught": false,
+        "x": 550,
+        "y": 480,
+        "wires": [
+            [
+                "b0fe1813967a3520",
+                "fa53fb4f6b312efa"
+            ]
+        ]
+    },
+    {
+        "id": "b0fe1813967a3520",
+        "type": "debug",
+        "z": "263d038f359cdfa0",
+        "g": "d8c792082730b02c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "error",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "6d8714556ee1a9df",
+        "type": "function",
+        "z": "263d038f359cdfa0",
+        "g": "c01bc4d9ed2a49a0",
+        "name": "Set Variables",
+        "func": "config = {\n    \"config\":      {\n            \"sourceHTTPServer\":                 \"http://192.168.1.4:8080\",\n            \"sourceHTTPRestTarget\":             \"/rest/events\",\n            \"mqttDestinationTopicBase\":         \"integration/onecontrol\",\n            \"mqttDeviceBase\":                   \"device\"\n            }\n        }\n\nglobal.set(\"onecontrol2mqtt\",config)\n\nmsg.url = config.config.sourceHTTPServer + config.config.sourceHTTPRestTarget\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fa53fb4f6b312efa",
+        "type": "debug",
+        "z": "263d038f359cdfa0",
+        "g": "d8c792082730b02c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "1bbdc0c5f95a3eec",
+        "type": "function",
+        "z": "263d038f359cdfa0",
+        "g": "c01bc4d9ed2a49a0",
+        "name": "Get Platform Versions",
+        "func": "//  ############################################################################\n//       Get global config settings\nconfig = global.get(\"onecontrol2mqtt.config\")\n\n//  ############################################################################\n//       build URL needed to pull platform versions\nmsg.url = config.sourceHTTPServer + \"/rest/bindings/idsmyrv/config\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 140,
+        "wires": [
+            [
+                "067b13bd484b2d58"
+            ]
+        ]
+    },
+    {
+        "id": "067b13bd484b2d58",
+        "type": "http request",
+        "z": "263d038f359cdfa0",
+        "g": "c01bc4d9ed2a49a0",
+        "name": "Get Platform Info",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 270,
+        "y": 180,
+        "wires": [
+            [
+                "9000968e89a13255"
+            ]
+        ]
+    },
+    {
+        "id": "dda47aa34ee87d5e",
+        "type": "moment",
+        "z": "263d038f359cdfa0",
+        "g": "c01bc4d9ed2a49a0",
+        "name": "Timestamp Event ",
+        "topic": "",
+        "input": "nan",
+        "inputType": "msg",
+        "inTz": "America/New_York",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "ddd MMM DD, YYYY h:mm:ssa",
+        "locale": "en_US",
+        "output": "timeStamp",
+        "outputType": "msg",
+        "outTz": "America/New_York",
+        "x": 335,
+        "y": 300,
+        "wires": [
+            [
+                "2e2a23e2758e4c2b"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "ab8e671dbf9a4bfe",
+        "type": "function",
+        "z": "263d038f359cdfa0",
+        "g": "b82129166ca6f3b4",
+        "name": "Create standard message format",
+        "func": "// ==============================================================================\n// \n//   Naming Convention:\n//                         |---------------------channel-----------------|\n//                         |----------------device -------------|        |-attr-|\n//   topic: smarthome/items/idsmyrv_switch_thing_0000000DA7251E09_percent/state\n//          |- base topic -|                                     |-entity|\n//                                               |----deviceID---|\n// ==============================================================================\n\n// #############################################################################\n// There are two different formats that can be used to represent the channel\n//   name.  Since Home Assistant won't allow for special characters in the \n//   payload of entities created via the MQTT Discovery process, we need to \n//   switch the format from:\n//      Example:\n//         From:   idsmyrv_light_thing_0000000DA6BB1407_percent\n//         To:     \n//            device: idsmyrv_light_thing_0000000DA6BB1407\n//            entity: percent\nfunction convertChannel(channelNameOrig) {\n    arrChannel =                        {}\n    entityName =                        \"\"\n    _deviceName =                       channelNameOrig.replace(\"idsmyrv_\",\"idsmyrv:\")\n    _channelName =                      _deviceName.replace(\"thing_\",\"thing:\").split(\":\")\n    _channelName[3] =                   _channelName[2].split(\"_\")\n    deviceID =                          _channelName[3][0]\n    deviceNameOrig =                    _channelName[0] + \"_\" + _channelName[1]\n\n    if (_channelName[3].length == 1) {\n        entityName =                    \"device\"\n    } else if (_channelName[3].length == 2) {\n        entityName =                        _channelName[3][1]\n    } else {\n        for (var i = 1; i < _channelName[3].length; i++) {\n            if ((i + 1) == _channelName[3].length) {\n                    entityName +=           _channelName[3][i]\n                }  else {\n                    entityName +=           _channelName[3][i] + \"_\"\n                }\n        }\n    }\n    //node.warn(entityName)\n    topicSplit =                            (channelNameOrig.replace(\"idsmyrv_\",\"idsmyrv:\")).replace(\"thing_\",\"thing:\").split(\":\")\n    topicSplit[1] =                         (topicSplit[1].replace(/-/g,\"_\")).replace(\"_thing\",\"\")\n    topicSplit[2] =                         topicSplit[2].split(\"_\")[0]\n    topicSplit.push(entityName)\n    topicSplit.push(msg.topic.split(\"/\")[3])\n    arrChannel = {\n        \"topicOrig\":                        msg.topic,\n        \"topicSplit\":                       topicSplit ,\n        \"eventDirection\":                   \"inbound\",\n        \"eventType\":                        msg.type,\n        \"eventTypeOrig\":                    msg.type//,\n        //\"timeStamp\":                        msg.timeStamp\n    /**/\n}\n return arrChannel;\n}\n\nmsg1 = {}\nchannelNameOrig =                   msg.topic.split(\"/\")[2]\nmsg1.core =                         {...msg.core,...convertChannel(channelNameOrig)}\n\nmsg.payload = JSON.parse((JSON.stringify(msg.payload)).toLowerCase())\nnode.send(msg1)\n\nswitch(msg.type) {\n    case \"ItemStateChangedEvent\":\n        msg1.core.eventType =       \"stateChanged\"\n        msg1.core.eventSource =     \"channel\"\n        msg1.payload = {\n            \"type\":                 msg.payload.type,\n            \"typeOrig\":             msg.payload.type,\n            \"value\":                msg.payload.value,\n            \"valueOrig\":            msg.payload.value,\n            \"oldtype\":              msg.payload.oldtype,\n            \"oldvalue\":             msg.payload.oldvalue,\n            \"details\":              \"\",\n            \"label\":                \"\"//,\n            //\"entityType\":           msg.type\n        }\n        break;\n    case \"ThingStatusInfoEvent\":\n        msg1.core.eventType =        \"deviceState\"\n        msg1.core.eventSource =     \"device\"\n        msg1.payload = {\n            \"type\":                 \"status\",\n            \"value\":                msg.payload.status,\n            \"typeOrig\":             \"status\",\n            \"valueOrig\":            msg.payload.status,\n                \"details\":          msg.payload.statusdetail,\n            \"label\":                \"\"//,\n            //\"entityType\":           msg.type\n        }\n        break;\n    case \"ItemCommandEvent\":\n        msg1.core.eventType =        \"command\"\n        msg1.core.eventSource =     \"channel\"\n        msg1.payload = {\n            \"type\":                 msg.payload.type,\n            \"value\":                msg.payload.value,\n            \"typeOrig\":             msg.payload.type,\n            \"valueOrig\":            msg.payload.value,\n            \"details\":              \"\",\n            \"label\":                \"\"//,\n            //\"entityType\":           msg.type\n        }\n        break;\n    case \"ItemStateEvent\":\n        msg1.core.eventType =        \"state\"\n        msg1.core.eventSource =     \"channel\"\n        msg1.payload = {\n            \"type\":                 msg.payload.type,\n            \"value\":                msg.payload.value,\n            \"typeOrig\":             msg.payload.type,\n            \"valueOrig\":            msg.payload.value,\n            \"details\":              \"\",\n            \"label\":                \"\"//,\n            //\"entityType\":           msg.type\n        }\n        break;\n   \n}\n\nreturn [null,msg1];\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 80,
+        "wires": [
+            [],
+            [
+                "e130c649120de679"
+            ]
+        ]
+    },
+    {
+        "id": "e130c649120de679",
+        "type": "function",
+        "z": "263d038f359cdfa0",
+        "g": "b82129166ca6f3b4",
+        "name": "Convert Payloads for Interoperability",
+        "func": "// #############################################################################\n// Convert and round variables, even if they are initially a string.\nfunction roundValue(value,round) {\n    if (isNaN(value) !== true) {\n        value = Number(value)\n        value = value.toFixed(round)\n        value = Number(value)\n    }\n    return value\n}\n\n// forwardMsg is used to determine if the message will be passed after processing.\nforwardMsg = true\n\nentityName = msg.core.topicSplit[3]\n\nmsg.payload.timeStamp = msg.core.timeStamp\n// Check for specific payloads and round them as appropriate.  Current is rounded\n//   to 0.1, everthing else to 0\nswitch(msg.core.eventType) {\n    case \"ItemStateChangedEvent\":\n        switch(entityName) {\n            case \"current\":\n                if (msg.payload.type == \"decimal\") {\n                    msg.payload.value = roundValue(msg.payload.value,1)\n                }\n                if (msg.payload.oldtype == \"decimal\") {\n                    msg.payload.oldvalue = roundValue(msg.payload.oldvalue,1)\n                }\n                if (msg.payload.value == msg.payload.oldvalue) {\n                    forwardMsg = false\n                }\n                break;\n            default:\n                if (msg.payload.type == \"decimal\") {\n                    msg.payload.value = roundValue(msg.payload.value,0)\n                }\n                if (msg.payload.oldtype == \"decimal\") {\n                    msg.payload.oldvalue = roundValue(msg.payload.oldvalue,0)\n                }\n                if (msg.payload.value == msg.payload.oldvalue) {\n                    forwardMsg = false\n                }\n                break;\n        }\n        break;\n    case \"ItemStateEvent\":\n        switch(entityName) {\n            case \"current\":\n                if (msg.payload.type == \"decimal\") {\n                    msg.payload.value = roundValue(msg.payload.value,1)\n                }\n                break;\n            default:\n                if (msg.payload.type == \"decimal\") {\n                    msg.payload.value = roundValue(msg.payload.value,0)\n                }\n                break;\n        }\n        break;\n    }\n    \nreturn [null,msg];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 200,
+        "wires": [
+            [],
+            [
+                "6b99b43fd73c29c3"
+            ]
+        ]
+    },
+    {
+        "id": "87266cac52150d3d",
+        "type": "debug",
+        "z": "263d038f359cdfa0",
+        "g": "c59cbc11e18cd55f",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1710,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "cbed5bf1de2ccc28",
+        "type": "function",
+        "z": "263d038f359cdfa0",
+        "g": "c59cbc11e18cd55f",
+        "name": "Structure message for MQTT publish",
+        "func": "//  ############################################################################\n//       Get global config settings\nconfig = global.get(\"onecontrol2mqtt.config\")\n\n_deviceName =           msg.core.topicSplit[1].replace(\"_thing\",\"\")\n_deviceID =             msg.core.topicSplit[2]\n_entityName =           msg.core.topicSplit[3]\n_eventType =            msg.core.eventType.replace(\"Thing\",\"\")\nmsg.payload.timeStamp = msg.core.timeStamp\n\nmsg.topic = config.mqttDestinationTopicBase + \"/\" + config.mqttDeviceBase + \"/\" + _deviceName +\"_\"+ _deviceID +\"/\" + _entityName +\"/\" + _eventType\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1510,
+        "y": 80,
+        "wires": [
+            [
+                "ae916530fc460486"
+            ]
+        ]
+    },
+    {
+        "id": "c8463644d11003a4",
+        "type": "mqtt out",
+        "z": "263d038f359cdfa0",
+        "g": "c59cbc11e18cd55f",
+        "name": "Publish to MQTT",
+        "topic": "",
+        "qos": "1",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f9896bb2219970c5",
+        "x": 1510,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "3e59efa3c3977c10",
+        "type": "function",
+        "z": "263d038f359cdfa0",
+        "g": "88fde289bc410898",
+        "name": "Write Channel to Globals",
+        "func": "//  ############################################################################\n//       Get global config settings\nconfig = global.get(\"onecontrol2mqtt.config\")\n\nfunction capitolizeFirst(string) {\n var output = string.replace(/\\w\\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});\n return output;\n}\n\n_deviceName =           msg.core.topicSplit[1].replace(\"_thing\",\"\")\n_deviceID =             msg.core.topicSplit[2]\nstateChannel = \"onecontrol2mqtt.devices.\" + _deviceName +\"_\"+ _deviceID + \".\" + msg.core.topicSplit[3]\n\nmsg1 = {\n    \"core\":   msg.core,\n    \"payload\": msg.eventPayload\n}\nmsg1.payload.label =  capitolizeFirst((msg1.payload.label + \" \" + msg.payload.label))\nmsg1.stateChannel = stateChannel\nnewChannel = {\n    \"label\":            msg.payload.label,\n    \"discoveryDate\":    msg.core.timeStamp,\n    \"stateDescription\":       msg.payload.stateDescription\n}\n\nglobal.set((stateChannel),newChannel)\n\nmsg1.stateChannel = stateChannel\nreturn msg1;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 340,
+        "wires": [
+            [
+                "cbed5bf1de2ccc28"
+            ]
+        ]
+    },
+    {
+        "id": "ae916530fc460486",
+        "type": "rbe",
+        "z": "263d038f359cdfa0",
+        "g": "c59cbc11e18cd55f",
+        "name": "Reduce Duplicate Messages",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 1500,
+        "y": 160,
+        "wires": [
+            [
+                "87266cac52150d3d",
+                "05431e5a196f652c"
+            ]
+        ]
+    },
+    {
+        "id": "6b99b43fd73c29c3",
+        "type": "function",
+        "z": "263d038f359cdfa0",
+        "g": "b82129166ca6f3b4",
+        "name": "Check for Globals",
+        "func": "//  ############################################################################\n//       Get global config settings\nconfig = global.get(\"onecontrol2mqtt.config\")\n\n\nfunction capitolizeFirst(string) {\n var output = string.replace(/\\w\\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});\n return output;\n}\n\n_deviceName =           msg.core.topicSplit[1].replace(\"_thing\",\"\")\n_deviceID =             msg.core.topicSplit[2]\n_channelName =          msg.core.topicSplit[0] + \":\" + msg.core.topicSplit[1].replace(/_/g,\"-\") + \"-thing:\" + msg.core.topicSplit[2]// + \"_\" + msg.core.topicSplit[3]\n\n\nstateDevice = \"onecontrol2mqtt.devices.\" + _deviceName +\"_\"+ _deviceID\nstateChannel = stateDevice + \".\" + msg.core.topicSplit[3]\n//msg._channelName = _channelName\n\n//  ############################################################################\n//       Look for global device object and if not there, create one\nif (typeof global.get((stateDevice)) ==\"undefined\" || typeof global.get((stateChannel)) == \"undefined\" ) {\n        msg.url = config.sourceHTTPServer + \"/rest/things/\"+ _channelName\n        msg.eventPayload = msg.payload\n        return[null,msg]\n    } else {\n        msg.payload.label = capitolizeFirst(global.get((stateDevice+\".label\")) + \" \" + global.get((stateChannel+\".label\")))\n        global.set((stateChannel + \".\" + msg.core.eventType),msg.payload)\n        msg.eventPayload = msg.payload\n    }\n            \n    /* */\nreturn [msg,null];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 280,
+        "wires": [
+            [
+                "8230233f2cbe6817"
+            ],
+            [
+                "a2fb463016958aaf"
+            ]
+        ]
+    },
+    {
+        "id": "a2fb463016958aaf",
+        "type": "http request",
+        "z": "263d038f359cdfa0",
+        "g": "88fde289bc410898",
+        "name": "Get entity Information",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1000,
+        "y": 80,
+        "wires": [
+            [
+                "f93922be9f0d7ba5"
+            ]
+        ]
+    },
+    {
+        "id": "2e2a23e2758e4c2b",
+        "type": "rbe",
+        "z": "263d038f359cdfa0",
+        "g": "c01bc4d9ed2a49a0",
+        "name": "Reduce Duplicate Messages",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 240,
+        "y": 340,
+        "wires": [
+            [
+                "ab8e671dbf9a4bfe"
+            ]
+        ]
+    },
+    {
+        "id": "f93922be9f0d7ba5",
+        "type": "function",
+        "z": "263d038f359cdfa0",
+        "g": "88fde289bc410898",
+        "name": "Write Device Info to Global state",
+        "func": "//  ############################################################################\n//       Get global config settings\nconfig = global.get(\"onecontrol2mqtt.config\")\n\n_deviceName =           msg.core.topicSplit[1].replace(\"_thing\",\"\")\n_deviceID =             msg.core.topicSplit[2]\n_channelName =          msg.core.topicSplit[0] + \":\" + msg.core.topicSplit[1].replace(/_/g,\"-\") + \":\" + msg.core.topicSplit[2] + \"_\" + msg.core.topicSplit[3]\n\n\nstateDevice = \"onecontrol2mqtt.devices.\" + _deviceName +\"_\"+ _deviceID\n//stateChannel = stateDevice + \".\" + msg.core.topicSplit[3]\nmsg1 = {\n    \"core\":   msg.core,\n    \"eventPayload\": msg.eventPayload,\n    \"payload\":      msg.payload\n}\n\nmsg1._channelName = _channelName\nnewDevice = {\n    \"label\":            msg.payload.label,\n    \"discoveryDate\":    msg.core.timeStamp,\n    \"deviceType\":       msg.payload.thingTypeUID,\n    \"configuration\":    msg.payload.configuration,\n    \"properties\":       msg.payload.properties\n}\nmsg1.eventPayload.label = msg.payload.label\nglobal.set((stateDevice),newDevice)\nmsg1.url = config.sourceHTTPServer + \"/rest/items/\"+ msg.core.topicOrig.split(\"/\")[2]\nreturn msg1;\n\n/*\ndevices.switch_0000000DA7251E09.label\n*/",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 180,
+        "wires": [
+            [
+                "bbb30d861d5f9944"
+            ]
+        ]
+    },
+    {
+        "id": "bbb30d861d5f9944",
+        "type": "http request",
+        "z": "263d038f359cdfa0",
+        "g": "88fde289bc410898",
+        "name": "Get entity Information",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1060,
+        "y": 260,
+        "wires": [
+            [
+                "3e59efa3c3977c10"
+            ]
+        ]
+    },
+    {
+        "id": "05431e5a196f652c",
+        "type": "moment",
+        "z": "263d038f359cdfa0",
+        "g": "c59cbc11e18cd55f",
+        "name": "Timestamp Event ",
+        "topic": "",
+        "input": "nan",
+        "inputType": "msg",
+        "inTz": "America/New_York",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "ddd MMM DD, YYYY h:mm:ssa",
+        "locale": "en_US",
+        "output": "payload.timeStamp",
+        "outputType": "msg",
+        "outTz": "America/New_York",
+        "x": 1510,
+        "y": 240,
+        "wires": [
+            [
+                "c8463644d11003a4"
+            ]
+        ]
+    },
+    {
+        "id": "85460d7bb245e517",
+        "type": "link in",
+        "z": "263d038f359cdfa0",
+        "g": "c59cbc11e18cd55f",
+        "name": "",
+        "links": [
+            "8230233f2cbe6817"
+        ],
+        "x": 1295,
+        "y": 80,
+        "wires": [
+            [
+                "cbed5bf1de2ccc28"
+            ]
+        ]
+    },
+    {
+        "id": "8230233f2cbe6817",
+        "type": "link out",
+        "z": "263d038f359cdfa0",
+        "g": "b82129166ca6f3b4",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "85460d7bb245e517"
+        ],
+        "x": 775,
+        "y": 340,
+        "wires": []
+    }
+]
